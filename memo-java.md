@@ -10,11 +10,11 @@
 
 ## Installation
 
-Si vous souhaitez **exécuter** des applications Java, vous devez installer le [https://www.java.com/fr/download/](*Java Runtime Environment*) (*JRE*). En revanche, si vous souhaitez **développer** des applications Java, vous devez installer le *Java Development Kit* (*JDK*) qui inclut également le *JRE*. Il existe plusieurs versions du *JDK* :
+Si vous souhaitez **exécuter** des applications Java, vous devez installer le [https://www.java.com/fr/download](*Java Runtime Environment*) (*JRE*). En revanche, si vous souhaitez **développer** des applications Java, vous devez installer le *Java Development Kit* (*JDK*) qui inclut également le *JRE*. Il existe plusieurs versions du *JDK* :
 
 - *Oracle* fournit la [https://www.oracle.com/technetwork/java/javase/downloads/index.html](version officelle de *Java*) mais depuis la version 11, *Java* est sous une license qui nécessite un abonnement payant si vous développez des applications commerciales.
-- [https://jdk.java.net/](*OpenJDK*) est une version libre (license GNU GPL v2) et *open source* du *JRE*.
-- [https://aws.amazon.com/fr/corretto/](*Amazon Corretto*) est basé sur *OpenGDK* mais avec un support à long terme (*LTS*).
+- [https://jdk.java.net](*OpenJDK*) est une version libre (license GNU GPL v2) et *open source* du *JRE*.
+- [https://aws.amazon.com/fr/corretto](*Amazon Corretto*) est basé sur *OpenGDK* mais avec un support à long terme (*LTS*).
 
 ## Jshell
 
@@ -28,9 +28,9 @@ Vous pouvez alors saisir des commandes *Java* pour tester rapidement leur effet.
 
 ## IDEs
 
-- *Eclipse* [https://www.eclipse.org/downloads/](*Eclipse*)
-- *JetBrains* [https://www.jetbrains.com/idea/download/](*IntelliJ IDEA*).
-- *Microsoft* [https://code.visualstudio.com/](*Visual Studio Code*) (*VS Code*).
+- *Eclipse* [https://www.eclipse.org/downloads](*Eclipse*)
+- *JetBrains* [https://www.jetbrains.com/idea/download](*IntelliJ IDEA*).
+- *Microsoft* [https://code.visualstudio.com](*Visual Studio Code*) (*VS Code*).
 
 ## Point d'entrée
 
@@ -85,7 +85,7 @@ int intValue = 10;
 short shortValue = (short) intValue;
 ```
 
-La méthode `valueOf` de la classe `String` et des classes *wrapper* pour les types de base (`Byte`, `Short`, `Integer`, `Long`, `Float`, `Double`) permet de convertir une donnée en un autre type. Cacune de ces classes *wrapper* possède une méthode `___Value` qui retourne la valeur du type de base contenue dans l'objet.
+La méthode `valueOf` de la classe `String` et des classes *wrapper* pour les types de base (`Byte`, `Short`, `Integer`, `Long`, `Float`, `Double`) permet de convertir une donnée en un autre type. Chacune de ces classes *wrapper* possède une méthode `*primitiveType*Value` qui retourne la valeur du type de base contenue dans l'objet.
 
 ```java
 Integer integer = Integer.valueOf(5);
