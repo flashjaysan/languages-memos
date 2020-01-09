@@ -4,17 +4,17 @@
 
 ## Documentation
 
-[http://docs.oracle.com/javase](Java SE documentation)
+[Java SE documentation](http://docs.oracle.com/javase)
 
-[http://docs.oracle.com/javaee](Java EE documentation)
+[Java EE documentation](http://docs.oracle.com/javaee)
 
 ## Installation
 
-Si vous souhaitez **exécuter** des applications Java, vous devez installer le [https://www.java.com/fr/download](Java Runtime Environment) (*JRE*). En revanche, si vous souhaitez **développer** des applications Java, vous devez installer le *Java Development Kit* (*JDK*) qui inclut également le *JRE*. Il existe plusieurs versions du *JDK* :
+Si vous souhaitez **exécuter** des applications Java, vous devez installer le [Java Runtime Environment](https://www.java.com/fr/download) (*JRE*). En revanche, si vous souhaitez **développer** des applications Java, vous devez installer le *Java Development Kit* (*JDK*) qui inclut également le *JRE*. Il existe plusieurs versions du *JDK* :
 
-- *Oracle* fournit la [https://www.oracle.com/technetwork/java/javase/downloads/index.html](version officielle de Java) mais depuis la version 11, *Java* est sous une license qui nécessite un abonnement payant si vous développez des applications commerciales.
-- [https://jdk.java.net](OpenJDK) est une version libre (license GNU GPL v2) et *open source* du *JRE*.
-- [https://aws.amazon.com/fr/corretto](Amazon Corretto) est basé sur *OpenGDK* mais avec un support à long terme (*LTS*).
+- *Oracle* fournit la [version officielle de Java](https://www.oracle.com/technetwork/java/javase/downloads/index.html) mais depuis la version 11, *Java* est sous une license qui nécessite un abonnement payant si vous développez des applications commerciales.
+- [OpenJDK](https://jdk.java.net) est une version libre (license GNU GPL v2) et *open source* du *JRE*.
+- [Amazon Corretto](https://aws.amazon.com/fr/corretto) est basé sur *OpenGDK* mais avec un support à long terme (*LTS*).
 
 ## Jshell
 
@@ -28,9 +28,9 @@ Vous pouvez alors saisir des commandes *Java* pour tester rapidement leur effet.
 
 ## IDEs
 
-- *Eclipse* [https://www.eclipse.org/downloads](Eclipse)
-- *JetBrains* [https://www.jetbrains.com/idea/download](IntelliJ IDEA).
-- *Microsoft* [https://code.visualstudio.com](Visual Studio Code) (*VS Code*).
+- *Eclipse* [Eclipse](https://www.eclipse.org/downloads).
+- *JetBrains* [IntelliJ IDEA](https://www.jetbrains.com/idea/download).
+- *Microsoft* [Visual Studio Code](https://code.visualstudio.com) (*VS Code*).
 
 ## Point d'entrée
 
@@ -195,7 +195,7 @@ stringValue.lastIndexOf("et"); // renvoie 16
 
 La classe `Math` située dans le paquetage `java.lang` (automatiquement importé), fournit de nombreuses méthodes de classe pour les calculs mathématiques.
 
-[https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Math.html](`java.lang.Math`)
+[`java.lang.Math`](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Math.html)
 
 ```java
 double angle = Math.PI; // renvoie la valeur de PI en radians
@@ -262,7 +262,7 @@ Scanner scanner = new Scanner(System.in);
 
 Vous pouvez à présent appeler les méthodes de cet objet.
 
-[https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/Scanner.html](La classe `Scanner`)
+La classe [`Scanner`](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/Scanner.html)
 
 La méthode `nextLine` renvoie une chaîne saisie depuis la console.
 
@@ -413,7 +413,7 @@ int[] newArray = Array.copyOf(array, array.length);
 
 ## ArrayList
 
-La classe [https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/ArrayList.html](`ArrayList`), située dans le package `java.util`, permet de créer et de gérer une structure de donnée similaire à un tableau mais dont le nombre d'éléments peut varier.
+La classe [`ArrayList`](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/ArrayList.html), située dans le package `java.util`, permet de créer et de gérer une structure de donnée similaire à un tableau mais dont le nombre d'éléments peut varier.
 
 Pour créer un objet de type `ArrayList`, utilisez le constructeur en précisant le type.
 
