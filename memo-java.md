@@ -129,6 +129,10 @@ boolean or = isTrue || isFalse; // OU logique
 boolean not = !isTrue; // NON logique
 ```
 
+**Attention !** Les opérateurs ont des priorités différentes. En cas de doute, utilisez des parenthèses pour être plus explicite.
+
+**Remarque :** Java fournit également des opérateurs de manipulation de bits. Consultez la documentation pour plus d'informations. En pratique, il est rarement utile de s'en servir en Java.
+
 ## Type String
 
 ```java
@@ -354,23 +358,41 @@ for (int i = 0; i < 10; ++i)
 
 ## Tableaux
 
-Un tableau ne peut contenir que des éléments de même type.
+Un tableau ne peut contenir que des éléments de même type. Utilisez les crochets à la suite d'un type primitif ou une classe pour déclarer un tableau d'éléments de ce type.
+
+```java
+int[] intArray;
+double[] doubleArray;
+String[] stringArray;
+```
+
+Vous pouvez également placer les crochets après le nom de la variable mais la lecture du type en est plus difficile. C'est une pratique déconseillée.
+
+```java
+int intArray[];
+```
+
+Pour créer une instance d'un tableau, utilisez le mot-clé `new` suivi du type et de crochets avec un nombre d'éléments. Ce nombre ne peut plus être modifié par la suite.
+
+```java
+int[] intArray = new int[5];
+double[] doubleArray = new double[10];
+String[] stringArray = new String[15];
+```
+
+Lors de la déclaration, vous pouvez également utiliser une suite de valeur séparées par des virgules et entre accolades.
 
 ```java
 int[] intArray = {0, 1, 2, 3, 4};
-double[] doubleArray = new double[10];
+double[] doubleArray = {.1, .2, .3, .4, .5};
+String[] stringArray = {"Marc", "David", "Laurie", "Marie"};
 ```
 
-**Attention !** La version avec les accolades ne peut pas être utilisée après la déclaration du tableau.
+**Attention !** La forme avec les accolades ne peut pas être utilisée après la déclaration du tableau.
 
 ```java
+int[] intArray;
 intArray = {1, 2, 3, 4, 5}; // erreur
-```
-
-Vous pouvez également placer les crochets après le nom de la variable mais la lecture du type en est plus difficile.
-
-```java
-int intArray[] = {0, 1, 2, 3, 4};
 ```
 
 La propriété `length` (attention, ce n'est pas une méthode) indique le nombre d'éléments d'un tableau.
@@ -389,6 +411,26 @@ for (int intValue: intArray)
 {
     // instructions
 }
+```
+
+### Trier un tableau
+
+La méthode `sort` de la classe `java.util.Arrays` permet de trier un tableau passé en argument.
+
+```java
+java.util.Arrays(intArray);
+```
+
+**Remarque :** Vous pouvez utiliser cette méthode avec un tableau de n'importe quel type à partir du moment où ce dernier implémente l'interface `Comparable`.
+
+### Trouver la valeur minimale, maximale et la moyenne des éléments d'un tableau
+
+La classe `java.util.Arrays` vous permet de convertir l'ensemble des éléments d'un tableau en flux via sa méthode `stream`. Vous pouvez ensuite appeler les méthodes `min`, `max` et `average` pour obtenir une option contenant la valeur. Utilisez alors la méthode `getAsNomDuType` pour obtenir la valeur effective.
+
+```java
+int min = Arrays.stream(intArray).min().getAsInt();
+int max = Arrays.stream(intArray).max().getAsInt();
+double avg = Arrays.stream(doubleArray).average().getAsDouble();
 ```
 
 ### Afficher un tableau
