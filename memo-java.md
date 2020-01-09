@@ -4,9 +4,9 @@
 
 ## Documentation
 
-[Java SE documentation](http://docs.oracle.com/javase)
+La documentation [Java SE](http://docs.oracle.com/javase)
 
-[Java EE documentation](http://docs.oracle.com/javaee)
+La documentation [Java EE](http://docs.oracle.com/javaee)
 
 ## Installation
 
@@ -28,7 +28,7 @@ Vous pouvez alors saisir des commandes *Java* pour tester rapidement leur effet.
 
 ## IDEs
 
-- *Eclipse* [Eclipse](https://www.eclipse.org/downloads).
+- *Eclipse Foundation* [Eclipse](https://www.eclipse.org/downloads).
 - *JetBrains* [IntelliJ IDEA](https://www.jetbrains.com/idea/download).
 - *Microsoft* [Visual Studio Code](https://code.visualstudio.com) (*VS Code*).
 
