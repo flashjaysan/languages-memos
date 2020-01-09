@@ -623,7 +623,7 @@ public class Child extends Parent
 
 ### Méthodes finales
 
-Une méthode définie avec le mot clé `final` ne peut être redéfinie dans une sous-classe.
+Une méthode définie avec le mot clé `final` ne peut être étendue dans une sous-classe.
 
 ```java
 public class Parent
@@ -650,14 +650,18 @@ Les classes finales n'ont que des méthodes finales. Elles ne peuvent pas possé
 
 ### Classe abstraite
 
+Une classe abstraite est une classe possédant une ou plusieurs méthodes qui ne sont pas implémentées (qui ne possèdent qu'une signature / n'ont pas de corps). Ce type de classe ne peut pas être instanciée directement. Vous devez étendre cette classe dans une sous-classe et implémenter ses méthodes abstraites. Une telle sous-classe peut-être instanciée.
+
 ```java
-public class AbstractClass
+public abstract class AbstractClass
 {
     abstract public type someMethod();
 }
 ```
 
 ### Interfaces
+
+Une interface est l'équivalent d'une classe abstraite dont toutes les méthodes sont abstraites. De plus, une sous classe peut étendre (on dit *implémenter*) plusieurs interfaces tout en étendant une seule classe parent. Utilisez le mot-clé `implements` pour implémenter une interface dans une classe.
 
 ```java
 public interface SomeInterface
@@ -677,8 +681,7 @@ class ImplementsSomeInterface implements SomeInterface
 
 ### Surcharge de méthode
 
-Une classe peut surcharger une méthode définie dans sa propre classe ou une classe parent avec différents arguments (en nombre ou en type)
-.
+Une classe peut surcharger une méthode définie dans sa propre classe ou une classe parent en réutilisant son nom mais en définissant une autre signature (avec différents arguments (en nombre ou en type)).
 
 ### Surdéfinition de méthode
 
