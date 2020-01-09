@@ -582,8 +582,11 @@ public class SomeClass
 ### Héritage
 
 Une sous-classe peut étendre une classe parent pour lui ajouter des fonctionnalités. Vous pouvez ajouter de nouveaux membres et de nouvelles méthodes. Utilisez le mot clé `extends` pour définir une sous-classe d'une autre classe.
+
 Une sous-classe peut également redéfinir une méthode de sa classe parent (même nom et même paramètres) à condition que la méthode soit déclarée `public` ou `protected` dans la classe parent. Pour un code plus sûr, vous pouvez ajouter une annotation `@Override` pour signaler explicitement au compilateur que vous redéfinissez une méthode dans une sous-classe.
+
 Vous pouvez appeler une méthode de la classe parent avec l'appel `super()` depuis la méthode de la classe enfant. Cependant, cet appel doit être la première instruction de la méthode.
+
 Lors de l'instanciation d'un objet de la sous-classe, si vous n'appelez pas explicitement le constructeur de la classe parent dans le constructeur de la sous-classe, le compilateur ajoute automatiquement un appel au constructeur sans argument de la classe parent. Si la classe parent ne définit que des constructeurs avec au moins un paramètre, une erreur se produit à la compilation.
 
 ```java
