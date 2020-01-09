@@ -522,7 +522,7 @@ public class SomeClass
 
     }
 
-    public SomeClass(type paramètre, ...) // constructeur avec paramètres
+    public SomeClass(NomDeType nomDeParametre, ...) // constructeur avec paramètres
     {
 
     }
