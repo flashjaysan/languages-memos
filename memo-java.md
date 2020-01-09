@@ -512,7 +512,7 @@ public class SomeClass
 
 ### Constructeurs
 
-Un constructeur est une méthode qui n'a aucun type de retour et qui porte le même nom que la classe.
+Un constructeur est une méthode qui n'a aucun type de retour et qui porte le même nom que la classe. Lorsque le comiplateur rencontre une classe sans constructeur, il génère automatiquement un constructeur par défaut sans paramètre. Vous pouvez ainsi appeler le constructeur d'une classe n'en possédant pas pour créer un objet de cette classe. En revanche, à partir du moment où vous définissez au moins un constructeur, le compilateur ne génère plus ce constructeur par défaut.
 
 ```java
 public class SomeClass
@@ -538,7 +538,7 @@ SomeClass someClass2 = new SomeClass(argument); // appel au constructeur avec pa
 
 ### le mot clé this
 
-Le mot clé `this` permet de faire référence à l'objet courant. Il peut être utilisé pour appeler une méthode depuis une autre méthode de cet objet (y compris le constructeur).
+Le mot clé `this` permet de faire référence à l'objet courant. Il peut être utilisé pour appeler un membre de l'objet ou une de ses méthodes depuis une autre méthode de cet objet (y compris le constructeur).
 
 ```java
 public class SomeClass
@@ -581,7 +581,10 @@ public class SomeClass
 
 ### Héritage
 
-Une sous-classe peut redéfinir une méthode de sa classe parent à condition que la méthode soit déclarée `public` ou `protected` dans la classe parent. Vous pouvez appeler le code de la méthode de la classe parent avec l'appel `super()`. Cependant, cet appel doit être la première instruction du constructeur. Si vous n'appelez pas le constructeur de la classe parent, le compilateur ajoute automatiquement un appel au constructeur de la classe parent sans argument. Si la classe parent ne définit que des constructeurs avec un ou des arguments, une erreur se produit.
+Une sous-classe peut étendre une classe parent pour lui ajouter des fonctionnalités. Vous pouvez ajouter de nouveaux membres et de nouvelles méthodes. Utilisez le mot clé `extends` pour définir une sous-classe d'une autre classe.
+Une sous-classe peut également redéfinir une méthode de sa classe parent (même nom et même paramètres) à condition que la méthode soit déclarée `public` ou `protected` dans la classe parent. Pour un code plus sûr, vous pouvez ajouter une annotation `@Override` pour signaler explicitement au compilateur que vous redéfinissez une méthode dans une sous-classe.
+Vous pouvez appeler une méthode de la classe parent avec l'appel `super()` depuis la méthode de la classe enfant. Cependant, cet appel doit être la première instruction de la méthode.
+Lors de l'instanciation d'un objet de la sous-classe, si vous n'appelez pas explicitement le constructeur de la classe parent dans le constructeur de la sous-classe, le compilateur ajoute automatiquement un appel au constructeur sans argument de la classe parent. Si la classe parent ne définit que des constructeurs avec au moins un paramètre, une erreur se produit à la compilation.
 
 ```java
 public class Parent
