@@ -318,4 +318,10 @@ local tilemap = {
 }
 ```
 
-Mais vous devez bien vous souvenir que le premier indice de ce tableau correspond aux sous-tableaux et donc aux lignes de la tilemap. Tout cela pour vous dire que lorsque vous souhaitez parcourir le tableau, la boucle extérieur utilise un indice représentant les lignes (soit l'axe y) et la boucle intérieur utilise un indice représenant les colonnes (soit l'axe x). Souvenez-vous donc bien de ce détail lorsque vous travaillez avec une tilemap car l'ordre des indices est inversé (d'abord y puis x) par rapport à votre utilisation habituelle des coordonnées (d'abord x puis y).
+Mais vous devez bien vous souvenir que le premier indice de ce tableau correspond aux sous-tableaux et donc aux lignes de la tilemap.
+
+```lua
+tilemap[2][1] == tuile_d -- Deuxième case vers le bas, première case vers la droite.
+```
+
+Tout cela pour vous dire que lorsque vous souhaitez parcourir le tableau, la boucle extérieur utilise un indice représentant les lignes (soit l'axe y) et la boucle intérieur utilise un indice représenant les colonnes (soit l'axe x). Souvenez-vous donc bien de ce détail lorsque vous travaillez avec une tilemap car l'ordre des indices est inversé (d'abord y puis x) par rapport à votre utilisation habituelle des coordonnées (d'abord x puis y).
