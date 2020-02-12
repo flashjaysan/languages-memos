@@ -24,6 +24,8 @@ structure["element_y"] = valeur_b
 structure["element_z"] = valeur_c
 ```
 
+La notation `une_table["cle"]` est donc équivalente à `une_table.cle` dans le cas de clé ne commençant pas par un chiffre.
+
 Vous pouvez également initialiser directement la table lors de sa création :
 
 ```lua
@@ -70,7 +72,7 @@ Pour accéder au contenu d'une case du tableau, utilisez le nom de la variable s
 tableau[2] == valeur_b
 ```
 
-**Attention :** Une table peut à la fois contenir des éléments représentés sous forme de tableau et des éléments représentés sous forme de structure de données. Vous pouvez même associer des fonctions aux éléments d'une table. Soyez donc prudent et raisonnable lorsque vous utilisez les tables.
+**Attention :** Une table peut à la fois contenir des éléments représentés sous forme de tableau et des éléments représentés sous forme de structure de données. Vous pouvez même associer des fonctions aux éléments d'une table. Soyez donc prudent et raisonnable lorsque vous utilisez les tables. Je vous conseille de ne pas mélanger les types d'éléments et d'utiliser soit une table en tant que tableau soit en tant que structure de donnée tant que vous n'êtes pas sûr de vous.
 
 ```lua
 local tableau = {}
@@ -82,6 +84,22 @@ tableau.element_x = valeur_e
 tableau.element_y = valeur_f
 tableau.element_z = valeur_g
 tableau.affiche_bonjour = function ()
+  print("Bonjour.")
+end
+```
+
+En réalité, une table est une structure de donnée qui associe une *valeur* à une *clé*. Une clé est soit une suite de chiffres (dans ce cas, la clé s'utilise telle quelle sans guillemets) soit un identificateur complexe qui ne doit pas commencer par un chiffre (dans ce cas, la clé s'utilise entre guillemets si vous utilisez la syntaxe entre crochets ou telle quelle si vous utilisez la syntaxe à point). Le code suivant est donc équivalent au précédent :
+
+```lua
+local tableau = {}
+tableau[1] = valeur_a
+tableau[2] = valeur_b
+tableau[3] = valeur_c
+tableau[4] = valeur_d
+tableau["element_x"] = valeur_e
+tableau["element_y"] = valeur_f
+tableau["element_z"] = valeur_g
+tableau["affiche_bonjour"] = function ()
   print("Bonjour.")
 end
 ```
@@ -210,7 +228,7 @@ end
 
 **Remarque :** Le code précédent trouve l'indice du dernier élément égal à valeur si le tableau possède plusieurs éléments répondant à cette condition.
 
-Avec une boucle tant que, vous pouvez ajouter une condition de sortie supplémentaire.
+Avec une boucle *tant que*, vous pouvez ajouter une condition de sortie supplémentaire.
 
 ```lua
 local element_trouve = false
@@ -300,7 +318,7 @@ Vous pouvez ensuite accéder à chaque élément contenu dans les sous-tableaux 
 ```lua
 for i = 1, #tableau_2d do
   for j = 1, #tableau_2d[i] do
-    -- Utilisez tableau_2d[i][j] pour manipuler l'élément à la position j du sous tableau tableau[i].
+    -- Utilisez tableau_2d[i][j] pour manipuler l'élément à la position j du sous-tableau tableau[i].
   end
 end
 ```
@@ -327,4 +345,4 @@ Mais vous devez toujours garder à l'esprit que :
 tilemap[2][1] == tuile_d -- Deuxième case vers le bas, première case vers la droite.
 ```
 
-Tout cela pour vous dire que lorsque vous souhaitez parcourir le tableau, la boucle extérieur utilise un indice représentant les lignes (soit l'axe y) et la boucle intérieur utilise un indice représenant les colonnes (soit l'axe x). Souvenez-vous donc bien de ce détail lorsque vous travaillez avec une tilemap car l'ordre des indices est inversé (d'abord y puis x) par rapport à votre utilisation habituelle des coordonnées (d'abord x puis y).
+Tout cela pour bien vous faire prendre conscience que lorsque vous souhaitez parcourir le tableau, la boucle extérieur utilise un indice représentant les lignes (soit l'axe y) et la boucle intérieur utilise un indice représenant les colonnes (soit l'axe x). Souvenez-vous donc bien de ce détail lorsque vous travaillez avec une tilemap car l'ordre des indices est inversé (d'abord y puis x) par rapport à votre utilisation habituelle des coordonnées (d'abord x puis y).
