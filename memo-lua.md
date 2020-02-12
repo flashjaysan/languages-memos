@@ -64,7 +64,7 @@ Pour connaitre la taille du tableau, utilisez le signe `#` devant le nom de la v
 #tableau == 4
 ```
 
-Pour accéder au contenu d'une case du tableau, utilisez le nom de la variable suivi de l'indice (entre crochets) du tableau.
+Pour accéder au contenu d'une case du tableau, utilisez le nom de la variable suivi de l'indice (entre crochets) de l'élément du tableau.
 
 ```lua
 tableau[2] == valeur_b
@@ -158,21 +158,164 @@ Vous devez absolument garder à l'esprit que, contrairement aux types de base de
 Si vous affectez à une nouvelle variable une table existante, cette dernière n'est pas copiée. En réalité, vous donnez à la nouvelle variable une référence à la table d'origine.
 
 ```lua
-local point = {x = 30, y = 70} -- création d'une table point
-local nouveau_point = point -- affectation à nouveau_point de la référence à la table point
-nouveau_point.x = 10 -- modification de l'élément x de nouveau_point
-point.x ~= 30 -- mais cela se répercute sur point
+local point = {x = 30, y = 70} -- Création d'une table point.
+local nouveau_point = point -- Affectation à nouveau_point de la référence à la table point.
+nouveau_point.x = 10 -- Modification de l'élément x de nouveau_point
+point.x ~= 30 -- mais cela se répercute sur point.
 ```
 
 Si vous passez une table à une fonction, la fonction ne prend pas une copie de la table mais travail sur une référence à la table. Si vous modifiez la table dans la fonction, c'est la table d'origine que vous modifiez.
 
 ```lua
-local point = {x = 30, y = 70} -- création d'une table point
+local point = {x = 30, y = 70} -- Création d'une table point.
 
 function change_x(some_point)
-  some_point.x = 10 -- modifie l'élément x de la table point
+  some_point.x = 10 -- Modifie l'élément x de la table point.
 end
 ```
 
 Pour résoudre ce genre de problème, il faut copier en profondeur les tables lorsque vous souhaitez vraiment créer une nouvelle copie. Consultez le [wiki de Lua](http://lua-users.org/wiki/CopyTable) pour plus d'informations.
 
+### Parcours de tableau à une dimension
+
+Un tableau peut être parcouru avec une boucle en utilisant l'indice pour accéder à un élément et le signe `#` pour obtenir le nombre d'éléments. Le plus simple est d'utiliser une boucle *pour* si vous souhaitez parcourir l'intégralité du tableau.
+
+```lua
+for i = 1, #tableau do
+  -- Utilisez tableau[i] pour manipuler l'élément à la position i du tableau.
+end
+```
+
+Ce qui peut également se traduire avec une boucle *tant que*.
+
+```lua
+local i = 1
+while i <= #tableau do
+  -- Utilisez tableau[i] pour manipuler l'élément à la position i du tableau.
+  i = i + 1
+end
+```
+
+Mais le réel intérêt d'une boucle *tant que* réside dans sa posibilité de sortir de la boucle avant la fin. Supposons, par exemple, que vous souhaitiez rechercher un élément particulier dans un tableau. Avec une boucle *pour*, vous devrez parcourir tout le tableau même si l'élément recherché est le premier.
+
+```lua
+local indice_element_recherche = 0
+for i = 1, #tableau do
+  if tableau[i] == valeur then
+    indice_element_recherche = i
+  end
+end
+-- Ici, indice_element_recherche a l'indice de la position de l'élément recherché ou 0 si on n'a pas trouvé d'élément égal à valeur.
+```
+
+**Remarque :** Le code précédent trouve l'indice du dernier élément égal à valeur si le tableau possède plusieurs éléments répondant à cette condition.
+
+Avec une boucle tant que, vous pouvez ajouter une condition de sortie supplémentaire.
+
+```lua
+local element_trouve = false
+local indice = 1
+while indice <= #tableau and not element_trouve do
+  if tableau[i] == valeur then
+    element_trouve = true
+  else
+    indice = indice + 1
+  end
+end
+-- Ici, si element_trouve est vrai, indice est égal à la position de l'élément recherché. Sinon, indice vaut un de plus que le nombre d'éléments du tableau.
+```
+
+**Attention !** Placez bien l'instruction `indice = indice + 1` dans le bloc `else` ou l'indice sera incrémenté même si l'élément est trouvé. A la sortie de boucle, l'indice vaudra un de plus que l'index de l'élément recherché.
+
+De même, si vous souhaitez ajouter ou supprimer un élément dans un tableau, vous allez modifier le nombre d'élément. L'utilisation du signe `#` devient donc plus compliqué. Pour résoudre ce problème, la solution est de supprimer l'élément en dehors d'une boucle.
+
+Ne faites surtout pas :
+
+```lua
+for i = 1, #tableau do
+  if tableau[i] == valeur then
+    table.remove(tableau, i) -- Vous supprimez l'élément mais vous modifiez également le nombre d'élément alors que vous continuez de parcourir le tableau.
+  end
+end
+```
+
+ou
+
+```lua
+local element_trouve = false
+local indice = 1
+while indice <= #tableau and not element_trouve do
+  if tableau[i] == valeur then
+    element_trouve = true
+    table.remove(tableau, i) -- Vous supprimez l'élément mais vous modifiez également le nombre d'élément. Cependant, au prochain tour de boucle, grace à element_trouve, vous allez sortir de la boucle.
+  else
+    indice = indice + 1
+  end
+end
+```
+
+Utilisez plutôt les formes suivantes :
+
+```lua
+local indice_element_recherche = 0
+for i = 1, #tableau do
+  if tableau[i] == valeur then
+    indice_element_recherche = i
+  end
+end
+if indice_element_recherche ~= 0 then
+  table.remove(tableau, indice_element_recherche)
+end
+```
+
+ou
+
+```lua
+local element_trouve = false
+local indice = 1
+while indice <= #tableau and not element_trouve do
+  if tableau[i] == valeur then
+    element_trouve = true
+  else
+    indice = indice + 1
+  end
+end
+if element_trouve then
+  table.remove(tableau, indice)
+end
+```
+
+### Parcours de tableau à deux dimensions
+
+Pour parcourir un tableau à deux dimensions, souvenez-vous que c'est en réalité un tableau contenant d'autres tableaux. Vous pouvez donc parcourir le tableau général comme dans la section précédente.
+
+```lua
+for i = 1, #tableau_2d do
+  -- Utilisez tableau_2d[i] pour manipuler le sous-tableau d'indice i du tableau général.
+end
+```
+
+Vous pouvez ensuite accéder à chaque élément contenu dans les sous-tableaux avec une seconde boucle.
+
+```lua
+for i = 1, #tableau_2d do
+  for j = 1, #tableau_2d[i] do
+    -- Utilisez tableau_2d[i][j] pour manipuler l'élément à la position j du sous tableau tableau[i].
+  end
+end
+```
+
+#### Cas particulier des tilemaps
+
+Une tilemap représentée sous la forme d'un tableau à deux dimensions est utilisée de manière à ce que sa lecture sous forme de code représente la disposition des tuiles dans un jeu.
+
+```lua
+local tilemap = {
+  {tuile_a, tuile_b, tuile_c},
+  {tuile_d, tuile_e, tuile_f},
+  {tuile_g, tuile_h, tuile_i},
+  {tuile_j, tuile_k, tuile_l}
+}
+```
+
+Mais vous devez bien vous souvenir que le premier indice de ce tableau correspond aux sous-tableaux et donc aux lignes de la tilemap. Tout cela pour vous dire que lorsque vous souhaitez parcourir le tableau, la boucle extérieur utilise un indice représentant les lignes (soit l'axe y) et la boucle intérieur utilise un indice représenant les colonnes (soit l'axe x). Souvenez-vous donc bien de ce détail lorsque vous travaillez avec une tilemap car l'ordre des indices est inversé (d'abord y puis x) par rapport à votre utilisation habituelle des coordonnées (d'abord x puis y).
