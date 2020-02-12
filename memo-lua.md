@@ -318,7 +318,10 @@ local tilemap = {
 }
 ```
 
-Mais vous devez bien vous souvenir que le premier indice de ce tableau correspond aux sous-tableaux et donc aux lignes de la tilemap.
+Mais vous devez toujours garder à l'esprit que :
+
+- Le premier indice de ce tableau correspond à un sous-tableau et donc à une ligne de la tilemap.
+- Le second indice correspond à un élément d'un des sous-tableaux et donc à une colonne.
 
 ```lua
 tilemap[2][1] == tuile_d -- Deuxième case vers le bas, première case vers la droite.
